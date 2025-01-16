@@ -1,0 +1,28 @@
+name: Deploy to DigitalOcean Droplet
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy App
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DROPLET_IP }}
+        username: root
+        password: ${{ secrets.DROPLET_PW }}
+        script_stop: true
+        command_timeout: 200m
+        script: |
+          cd home/fitbycharoo/tracking-sheet-backend
+          git pull https://${{secrets.GIT_USERNAME}}:${{secrets.GIT_TOKEN}}@github.com/muhumar/tracking-sheet-backend.git main
+          docker-compose down
+          docker-compose up --build -d
