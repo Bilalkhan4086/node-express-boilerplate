@@ -1,0 +1,44 @@
+{
+  "name": "AddYourAppNameHere",
+  "version": "1.0.0",
+  "description": "Add your description here",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --runInBand",
+    "test:watch": "cross-env NODE_ENV=test jest --watch --runInBand",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage --runInBand"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^6.1.5",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setup.js"
+    ]
+  }
+}
